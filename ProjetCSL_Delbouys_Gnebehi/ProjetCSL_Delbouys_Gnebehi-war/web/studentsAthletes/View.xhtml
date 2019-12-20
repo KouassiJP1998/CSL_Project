@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewStudentsAthletesTitle} of Student Athlete - #{studentsAthletesController.selected.studentId}"></h:outputText>
+        </ui:define>
+        <ui:define name="menu">
+                <li><h:link outcome="/studentsAthletes/List" value="Students Athletes"/></li>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewStudentsAthletesLabel_studentId}"/>
+                    <h:outputText value="#{studentsAthletesController.selected.studentId}" title="#{bundle.ViewStudentsAthletesTitle_studentId}"/>
+                    <h:outputText value="#{bundle.ViewStudentsAthletesLabel_pointsAwardedToDate}"/>
+                    <h:outputText value="#{studentsAthletesController.selected.pointsAwardedToDate}" title="#{bundle.ViewStudentsAthletesTitle_pointsAwardedToDate}"/>
+                    <h:outputText value="#{bundle.ViewStudentsAthletesLabel_firstName}"/>
+                    <h:outputText value="#{studentsAthletesController.selected.firstName}" title="#{bundle.ViewStudentsAthletesTitle_firstName}"/>
+                    <h:outputText value="#{bundle.ViewStudentsAthletesLabel_middleName}"/>
+                    <h:outputText value="#{studentsAthletesController.selected.middleName}" title="#{bundle.ViewStudentsAthletesTitle_middleName}"/>
+                    <h:outputText value="#{bundle.ViewStudentsAthletesLabel_lastName}"/>
+                    <h:outputText value="#{studentsAthletesController.selected.lastName}" title="#{bundle.ViewStudentsAthletesTitle_lastName}"/>
+                    <h:outputText value="#{bundle.ViewStudentsAthletesLabel_dateOfBirth}"/>
+                    <h:outputText value="#{studentsAthletesController.selected.dateOfBirth}" title="#{bundle.ViewStudentsAthletesTitle_dateOfBirth}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewStudentsAthletesLabel_gender}"/>
+                    <h:outputText value="#{studentsAthletesController.selected.gender}" title="#{bundle.ViewStudentsAthletesTitle_gender}"/>
+                    <h:outputText value="#{bundle.ViewStudentsAthletesLabel_studentsAddress}"/>
+                    <h:outputText value="#{studentsAthletesController.selected.studentsAddress}" title="#{bundle.ViewStudentsAthletesTitle_studentsAddress}"/>
+                    <h:outputText value="#{bundle.ViewStudentsAthletesLabel_otherDetails}"/>
+                    <h:outputText value="#{studentsAthletesController.selected.otherDetails}" title="#{bundle.ViewStudentsAthletesTitle_otherDetails}"/>
+                </h:panelGrid>
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewStudentsAthletesEditLink}"/>
+                <br />
+                <h:commandLink action="#{studentsAthletesController.destroyAndView}" value="Delete"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

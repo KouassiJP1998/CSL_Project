@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDivisionsTitle} of Division"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDivisionsEmpty}" rendered="#{divisionsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{divisionsController.items.rowCount > 0}">
+                    <h:outputText value="#{divisionsController.pagination.pageFirstItem + 1}..#{divisionsController.pagination.pageLastItem + 1}/#{divisionsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{divisionsController.previous}" value="#{bundle.Previous} #{divisionsController.pagination.pageSize}" rendered="#{divisionsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{divisionsController.next}" value="#{bundle.Next} #{divisionsController.pagination.pageSize}" rendered="#{divisionsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{divisionsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDivisionsTitle_divisionCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.divisionCode}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDivisionsTitle_divisionDescription}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.divisionDescription}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                            </f:facet>
+                            <h:commandLink action="#{divisionsController.prepareView}" value="&#128065;"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{divisionsController.prepareEdit}" value="&#9998;"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{divisionsController.destroy}" value="&#128465;"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br/>
+                <h:commandLink action="#{divisionsController.prepareCreate}" value="#{bundle.ListDivisionsCreateLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

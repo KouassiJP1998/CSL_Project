@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateStudentsAthletesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="menu">
+            <li><h:link outcome="/studentsAthletes/List" value="Students Athletes"/></li>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateStudentsAthletesLabel_studentId}" for="studentId" />
+                    <h:inputText id="studentId" value="#{studentsAthletesController.selected.studentId}" title="#{bundle.CreateStudentsAthletesTitle_studentId}" required="true" requiredMessage="#{bundle.CreateStudentsAthletesRequiredMessage_studentId}"/>
+                    <h:outputLabel value="#{bundle.CreateStudentsAthletesLabel_pointsAwardedToDate}" for="pointsAwardedToDate" />
+                    <h:inputText id="pointsAwardedToDate" value="#{studentsAthletesController.selected.pointsAwardedToDate}" title="#{bundle.CreateStudentsAthletesTitle_pointsAwardedToDate}" />
+                    <h:outputLabel value="#{bundle.CreateStudentsAthletesLabel_firstName}" for="firstName" />
+                    <h:inputText id="firstName" value="#{studentsAthletesController.selected.firstName}" title="#{bundle.CreateStudentsAthletesTitle_firstName}" />
+                    <h:outputLabel value="#{bundle.CreateStudentsAthletesLabel_middleName}" for="middleName" />
+                    <h:inputText id="middleName" value="#{studentsAthletesController.selected.middleName}" title="#{bundle.CreateStudentsAthletesTitle_middleName}" />
+                    <h:outputLabel value="#{bundle.CreateStudentsAthletesLabel_lastName}" for="lastName" />
+                    <h:inputText id="lastName" value="#{studentsAthletesController.selected.lastName}" title="#{bundle.CreateStudentsAthletesTitle_lastName}" />
+                    <h:outputLabel value="#{bundle.CreateStudentsAthletesLabel_dateOfBirth}" for="dateOfBirth" />
+                    <h:inputText id="dateOfBirth" value="#{studentsAthletesController.selected.dateOfBirth}" title="#{bundle.CreateStudentsAthletesTitle_dateOfBirth}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateStudentsAthletesLabel_gender}" for="gender" />
+                    <h:inputText id="gender" value="#{studentsAthletesController.selected.gender}" title="#{bundle.CreateStudentsAthletesTitle_gender}" />
+                    <h:outputLabel value="#{bundle.CreateStudentsAthletesLabel_studentsAddress}" for="studentsAddress" />
+                    <h:inputText id="studentsAddress" value="#{studentsAthletesController.selected.studentsAddress}" title="#{bundle.CreateStudentsAthletesTitle_studentsAddress}" />
+                    <h:outputLabel value="#{bundle.CreateStudentsAthletesLabel_otherDetails}" for="otherDetails" />
+                    <h:inputText id="otherDetails" value="#{studentsAthletesController.selected.otherDetails}" title="#{bundle.CreateStudentsAthletesTitle_otherDetails}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{studentsAthletesController.create}" value="#{bundle.CreateStudentsAthletesSaveLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

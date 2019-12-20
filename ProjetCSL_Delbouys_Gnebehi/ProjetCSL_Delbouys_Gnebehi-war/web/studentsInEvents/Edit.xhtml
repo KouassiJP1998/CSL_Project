@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditStudentsInEventsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="menu">
+            <li><h:link outcome="/studentsInEvents/List" value="Students in Events"/></li>
+            <li><h:link outcome="View" value="View Current"/></li>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditStudentsInEventsLabel_studentResult}" for="studentResult" />
+                    <h:inputText id="studentResult" value="#{studentsInEventsController.selected.studentResult}" title="#{bundle.EditStudentsInEventsTitle_studentResult}" />
+                    <h:outputLabel value="#{bundle.EditStudentsInEventsLabel_studentPointsAwarded}" for="studentPointsAwarded" />
+                    <h:inputText id="studentPointsAwarded" value="#{studentsInEventsController.selected.studentPointsAwarded}" title="#{bundle.EditStudentsInEventsTitle_studentPointsAwarded}" />
+                    <h:outputLabel value="#{bundle.EditStudentsInEventsLabel_events}" for="events" />
+                    <h:selectOneMenu id="events" value="#{studentsInEventsController.selected.events}" title="#{bundle.EditStudentsInEventsTitle_events}" required="true" requiredMessage="#{bundle.EditStudentsInEventsRequiredMessage_events}">
+                        <f:selectItems value="#{eventsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditStudentsInEventsLabel_studentsAthletes}" for="studentsAthletes" />
+                    <h:selectOneMenu id="studentsAthletes" value="#{studentsInEventsController.selected.studentsAthletes}" title="#{bundle.EditStudentsInEventsTitle_studentsAthletes}" required="true" requiredMessage="#{bundle.EditStudentsInEventsRequiredMessage_studentsAthletes}">
+                        <f:selectItems value="#{studentsAthletesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditStudentsInEventsLabel_teams}" for="teams" />
+                    <h:selectOneMenu id="teams" value="#{studentsInEventsController.selected.teams}" title="#{bundle.EditStudentsInEventsTitle_teams}" required="true" requiredMessage="#{bundle.EditStudentsInEventsRequiredMessage_teams}">
+                        <f:selectItems value="#{teamsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{studentsInEventsController.update}" value="#{bundle.EditStudentsInEventsSaveLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

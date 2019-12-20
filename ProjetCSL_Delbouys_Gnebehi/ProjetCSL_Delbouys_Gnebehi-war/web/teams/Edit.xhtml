@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTeamsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="menu">
+            <li><h:link outcome="/teams/List" value="Teams"/></li>
+            <li><h:link outcome="View" value="View Current"/></li>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_teamId}" for="teamId" />
+                    <h:inputText id="teamId" value="#{teamsController.selected.teamId}" title="#{bundle.EditTeamsTitle_teamId}" required="true" requiredMessage="#{bundle.EditTeamsRequiredMessage_teamId}"/>
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_gender}" for="gender" />
+                    <h:inputText id="gender" value="#{teamsController.selected.gender}" title="#{bundle.EditTeamsTitle_gender}" />
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_teamDate}" for="teamDate" />
+                    <h:inputText id="teamDate" value="#{teamsController.selected.teamDate}" title="#{bundle.EditTeamsTitle_teamDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_teamName}" for="teamName" />
+                    <h:inputText id="teamName" value="#{teamsController.selected.teamName}" title="#{bundle.EditTeamsTitle_teamName}" />
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_teamDescription}" for="teamDescription" />
+                    <h:inputText id="teamDescription" value="#{teamsController.selected.teamDescription}" title="#{bundle.EditTeamsTitle_teamDescription}" />
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_coachName}" for="coachName" />
+                    <h:inputText id="coachName" value="#{teamsController.selected.coachName}" title="#{bundle.EditTeamsTitle_coachName}" />
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_otherDetails}" for="otherDetails" />
+                    <h:inputText id="otherDetails" value="#{teamsController.selected.otherDetails}" title="#{bundle.EditTeamsTitle_otherDetails}" />
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_divisionCode}" for="divisionCode" />
+                    <h:selectOneMenu id="divisionCode" value="#{teamsController.selected.divisionCode}" title="#{bundle.EditTeamsTitle_divisionCode}" >
+                        <f:selectItems value="#{divisionsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditTeamsLabel_sportCode}" for="sportCode" />
+                    <h:selectOneMenu id="sportCode" value="#{teamsController.selected.sportCode}" title="#{bundle.EditTeamsTitle_sportCode}" >
+                        <f:selectItems value="#{sportsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{teamsController.update}" value="#{bundle.EditTeamsSaveLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

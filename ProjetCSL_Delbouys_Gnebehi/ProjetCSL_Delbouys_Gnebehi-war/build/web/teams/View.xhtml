@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTeamsTitle} of Team - #{teamsController.selected.teamId}"></h:outputText>
+        </ui:define>
+        <ui:define name="menu">
+            <li><h:link outcome="/teams/List" value="Teams"/></li>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTeamsLabel_teamId}"/>
+                    <h:outputText value="#{teamsController.selected.teamId}" title="#{bundle.ViewTeamsTitle_teamId}"/>
+                    <h:outputText value="#{bundle.ViewTeamsLabel_gender}"/>
+                    <h:outputText value="#{teamsController.selected.gender}" title="#{bundle.ViewTeamsTitle_gender}"/>
+                    <h:outputText value="#{bundle.ViewTeamsLabel_teamDate}"/>
+                    <h:outputText value="#{teamsController.selected.teamDate}" title="#{bundle.ViewTeamsTitle_teamDate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewTeamsLabel_teamName}"/>
+                    <h:outputText value="#{teamsController.selected.teamName}" title="#{bundle.ViewTeamsTitle_teamName}"/>
+                    <h:outputText value="#{bundle.ViewTeamsLabel_teamDescription}"/>
+                    <h:outputText value="#{teamsController.selected.teamDescription}" title="#{bundle.ViewTeamsTitle_teamDescription}"/>
+                    <h:outputText value="#{bundle.ViewTeamsLabel_coachName}"/>
+                    <h:outputText value="#{teamsController.selected.coachName}" title="#{bundle.ViewTeamsTitle_coachName}"/>
+                    <h:outputText value="#{bundle.ViewTeamsLabel_otherDetails}"/>
+                    <h:outputText value="#{teamsController.selected.otherDetails}" title="#{bundle.ViewTeamsTitle_otherDetails}"/>
+                    <h:outputText value="#{bundle.ViewTeamsLabel_divisionCode}"/>
+                    <h:outputText value="#{teamsController.selected.divisionCode}" title="#{bundle.ViewTeamsTitle_divisionCode}"/>
+                    <h:outputText value="#{bundle.ViewTeamsLabel_sportCode}"/>
+                    <h:outputText value="#{teamsController.selected.sportCode}" title="#{bundle.ViewTeamsTitle_sportCode}"/>
+                </h:panelGrid>
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTeamsEditLink}"/>
+                <br />
+                <h:commandLink action="#{teamsController.destroyAndView}" value="Delete"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

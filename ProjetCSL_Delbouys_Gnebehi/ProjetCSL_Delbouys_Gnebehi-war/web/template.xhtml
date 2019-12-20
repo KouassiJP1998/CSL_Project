@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="styles.css"/>
+    </h:head>
+
+    <h:body>
+        <div id="top">
+            <ul>
+                <li><h:link outcome="/index" value="#{bundle.ListDivisionsIndexLink}"/></li>
+                <ui:insert name="menu"></ui:insert>
+            </ul>
+        </div>
+        <div id="body">
+            <br/><br/><br/><br/>
+            <h1>
+                <ui:insert name="title">Default Title</ui:insert>
+            </h1>
+            <ui:insert name="body">Default Body</ui:insert>
+        </div>
+        <div id="bottom">
+           <br/><br/>
+           <table align="center">
+               <tr>
+                   <td style="width:30%;">
+                       <h4> Auteurs </h4>
+                   </td>
+                   <td style="width:30%;">
+                       <h4> Contact </h4>
+                   </td>
+                   <td style="width:30%;">
+                       <h4> Autres Liens </h4>
+                   </td>
+               </tr>
+               <tr>
+                   <td>
+                       <table>
+                           <tr>
+                               <td>
+                                   <a href="mailto:bagre.gnebehi@etud.univ-pau.fr" target="_blank" class="menu">Jean Philippe Gnebehi</a>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td>
+                                   <a href="mailto:bastien.delbouys@etud.univ-pau.fr" target="_blank" class="menu">Bastien Delbouys</a>
+                               </td>
+                           </tr>
+                       </table>
+                   </td>
+                   <td>
+                       <table>
+                           <tr>
+                               <td>
+                                   &#9742;
+                               </td>
+                               <td>
+                                   <a href="tel:0659739677">06.59.76.96.77</a>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td>
+                                   &#9993;
+                               </td>
+                               <td>
+                                   <a href="mailto:bastien.delbouys@gmail.com" target="_blank" class="menu">bastien.delbouys@gmail.com</a>
+                               </td>
+                           </tr>
+                       </table>
+                   </td>
+                   <td>
+                       <table>
+                           <tr>
+                               <td>
+                                   <img src="img/linkedin_icon.png" alt="" title="Linkedin" style="width:27px;height:24px"/> 
+                               </td>
+                               <td>
+                                   <a href="https://fr.linkedin.com/in/delbouysbastien" target="_blank">linkedin.com/in/delbouysbastien</a>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td>
+                                   <img src="img/github_icon.png" alt="" title="GitHub" style="width:24px;height:24px"/> 
+                               </td>
+                               <td>
+                                   <a href="https://github.com/falkke" target="_blank">github.com/falkke</a>
+                               </td>
+                           </tr>
+                       </table>
+                   </td>
+               </tr>
+               <tr>
+                   <td colspan="3" style="text-align:center">
+                       <br/><br/>
+                       Projet pour l'UE Composants et Services Logiciels à l'UPPA, 2019.
+                   </td>
+               </tr>
+           </table>
+       </div>
+    </h:body>
+</html>

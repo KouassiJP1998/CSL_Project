@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListStudentsAthletesTitle} of Students Athletes"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListStudentsAthletesEmpty}" rendered="#{studentsAthletesController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{studentsAthletesController.items.rowCount > 0}">
+                    <h:outputText value="#{studentsAthletesController.pagination.pageFirstItem + 1}..#{studentsAthletesController.pagination.pageLastItem + 1}/#{studentsAthletesController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{studentsAthletesController.previous}" value="#{bundle.Previous} #{studentsAthletesController.pagination.pageSize}" rendered="#{studentsAthletesController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{studentsAthletesController.next}" value="#{bundle.Next} #{studentsAthletesController.pagination.pageSize}" rendered="#{studentsAthletesController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{studentsAthletesController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsAthletesTitle_studentId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.studentId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsAthletesTitle_pointsAwardedToDate}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pointsAwardedToDate}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsAthletesTitle_firstName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.firstName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsAthletesTitle_middleName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.middleName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsAthletesTitle_lastName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lastName}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsAthletesTitle_dateOfBirth}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateOfBirth}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsAthletesTitle_gender}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.gender}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsAthletesTitle_studentsAddress}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.studentsAddress}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsAthletesTitle_otherDetails}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.otherDetails}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{studentsAthletesController.prepareView}" value="&#128065;"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{studentsAthletesController.prepareEdit}" value="&#9998;"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{studentsAthletesController.destroy}" value="&#128465;"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{studentsAthletesController.prepareCreate}" value="#{bundle.ListStudentsAthletesCreateLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="menu">
+            <li><h:link outcome="/studentsInTeams/List" value="Students in Teams"/></li>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateStudentsInTeamsLabel_studentsAthletes}" for="studentsAthletes" />
+                    <h:selectOneMenu id="studentsAthletes" value="#{studentsInTeamsController.selected.studentsAthletes}" title="#{bundle.CreateStudentsInTeamsTitle_studentsAthletes}" required="true" requiredMessage="#{bundle.CreateStudentsInTeamsRequiredMessage_studentsAthletes}">
+                        <f:selectItems value="#{studentsAthletesController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateStudentsInTeamsLabel_teams}" for="teams" />
+                    <h:selectOneMenu id="teams" value="#{studentsInTeamsController.selected.teams}" title="#{bundle.CreateStudentsInTeamsTitle_teams}" required="true" requiredMessage="#{bundle.CreateStudentsInTeamsRequiredMessage_teams}">
+                        <f:selectItems value="#{teamsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{studentsInTeamsController.create}" value="#{bundle.CreateStudentsInTeamsSaveLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

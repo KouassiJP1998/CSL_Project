@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEventsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="menu">
+            <li><h:link outcome="/events/List" value="Events"/></li>
+            <li><h:link outcome="View" value="View Current"/></li>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditEventsLabel_eventId}" for="eventId" />
+                    <h:inputText id="eventId" value="#{eventsController.selected.eventId}" title="#{bundle.EditEventsTitle_eventId}" required="true" requiredMessage="#{bundle.EditEventsRequiredMessage_eventId}"/>
+                    <h:outputLabel value="#{bundle.EditEventsLabel_eventName}" for="eventName" />
+                    <h:inputText id="eventName" value="#{eventsController.selected.eventName}" title="#{bundle.EditEventsTitle_eventName}" />
+                    <h:outputLabel value="#{bundle.EditEventsLabel_eventLocation}" for="eventLocation" />
+                    <h:inputText id="eventLocation" value="#{eventsController.selected.eventLocation}" title="#{bundle.EditEventsTitle_eventLocation}" />
+                    <h:outputLabel value="#{bundle.EditEventsLabel_startDate}" for="startDate" />
+                    <h:inputText id="startDate" value="#{eventsController.selected.startDate}" title="#{bundle.EditEventsTitle_startDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEventsLabel_endDate}" for="endDate" />
+                    <h:inputText id="endDate" value="#{eventsController.selected.endDate}" title="#{bundle.EditEventsTitle_endDate}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditEventsLabel_otherDetails}" for="otherDetails" />
+                    <h:inputText id="otherDetails" value="#{eventsController.selected.otherDetails}" title="#{bundle.EditEventsTitle_otherDetails}" />
+                    <h:outputLabel value="#{bundle.EditEventsLabel_sportCode}" for="sportCode" />
+                    <h:selectOneMenu id="sportCode" value="#{eventsController.selected.sportCode}" title="#{bundle.EditEventsTitle_sportCode}" >
+                        <f:selectItems value="#{sportsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{eventsController.update}" value="#{bundle.EditEventsSaveLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

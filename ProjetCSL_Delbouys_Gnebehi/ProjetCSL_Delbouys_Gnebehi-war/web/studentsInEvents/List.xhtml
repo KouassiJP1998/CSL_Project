@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListStudentsInEventsTitle} of Students in Events"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListStudentsInEventsEmpty}" rendered="#{studentsInEventsController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{studentsInEventsController.items.rowCount > 0}">
+                    <h:outputText value="#{studentsInEventsController.pagination.pageFirstItem + 1}..#{studentsInEventsController.pagination.pageLastItem + 1}/#{studentsInEventsController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{studentsInEventsController.previous}" value="#{bundle.Previous} #{studentsInEventsController.pagination.pageSize}" rendered="#{studentsInEventsController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{studentsInEventsController.next}" value="#{bundle.Next} #{studentsInEventsController.pagination.pageSize}" rendered="#{studentsInEventsController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{studentsInEventsController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsInEventsTitle_studentResult}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.studentResult}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsInEventsTitle_studentPointsAwarded}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.studentPointsAwarded}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsInEventsTitle_events}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.events}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsInEventsTitle_studentsAthletes}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.studentsAthletes}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListStudentsInEventsTitle_teams}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.teams}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{studentsInEventsController.prepareView}" value="&#128065;"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{studentsInEventsController.prepareEdit}" value="&#9998;"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{studentsInEventsController.destroy}" value="&#128465;"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{studentsInEventsController.prepareCreate}" value="#{bundle.ListStudentsInEventsCreateLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
